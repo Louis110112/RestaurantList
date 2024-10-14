@@ -15,8 +15,16 @@ app.get('/', (req, res) => {
 })
 
 app.get('/restaurantlist', (req, res) => {
-    const keyword = req.query.search || ""
-    const matchedRes = restaurantlist.filter((RES) => RES.name.toLowerCase().includes(keyword.toLowerCase()))
+    const keyword = req.query.search
+    // const matchedRes = restaurantlist.filter((RES) => RES.name.toLowerCase().includes(keyword.toLowerCase()))
+    const matchedRes = keyword ? restaurantlist.filter((RES) =>
+        Object.values(RES).some((property) => {
+            if (typeof property === 'string') {
+                return property.toLowerCase().includes(keyword.toLowerCase())
+            }
+            return false
+        })
+    ) : restaurantlist
     res.render('index', { restaurantlist: matchedRes, BASE_IMG_URL, keyword })
 })
 
