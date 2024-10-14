@@ -34,33 +34,27 @@
 
 <!-- restaurant list -->
 <div class="container mt-5">
-    {{#each restaurantlist as |restaurantlist|}}
     <div class="row">
-
         <div class="col-md-10 col-12 mx-auto">
             <div class="row row-cols-sm-3">
+                {{#each restaurantlist as |restaurantlist|}}
                 <a href="/restaurantlist/{{restaurantlist.id}}" class="text-secondary">
                     <div class="card mb-3">
-                        <img class="card-img-top" src="{{restaurantlist.image}}" alt="Sababa 沙巴巴中東美食">
+                        <img class="card-img-top" src="{{restaurantlist.image}}" alt="{{restaurantlist}}">
                         <div class="card-body p-3">
                             <h6 class="card-title mb-1">{{restaurantlist.name}}</h6>
-
                             <div class="restaurant-category mb-1">
-                                <i class="fas fa-utensils pr-2"></i> 中東料理
+                                <i class="fas fa-utensils pr-2"></i> {{restaurantlist-category}}
                             </div>
-
                             <span class="badge rounded-pill bg-danger font-weight-normal">
                                 {{restaurantlist.rating}}
                                 <i class="fas fa-star fa-xs"></i>
                             </span>
-
                         </div>
                     </div>
                 </a>
-
+                {{/each}}
             </div>
         </div>
-
     </div>
-    {{/each}}
 </div>
